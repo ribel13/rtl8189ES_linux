@@ -27,8 +27,7 @@ jobs:
         env:
           VERSION: ${{matrix.version }}
         run: |
-          ##KERNEL_URL=https://kernel.ubuntu.com/~kernel-ppa/mainline/
-          KERNEL_URL=https://github.com/ophub/kernel/releases/download/kernel_stable/6.6.119.tar.gz
+          KERNEL_URL=https://kernel.ubuntu.com/~kernel-ppa/mainline/
           KERNEL_URL_DETAILS=$(wget --quiet -O - ${KERNEL_URL}v${VERSION}/ | grep -A8 "Build for amd64\|Test amd64")
           ALL_DEB=$(echo "$KERNEL_URL_DETAILS" |  grep -m1 'all.deb' | cut -d '"' -f 2)
           AMD64_DEB=$(echo "$KERNEL_URL_DETAILS" | grep -m1 "amd64.deb" | cut -d '"' -f 2)
